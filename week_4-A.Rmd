@@ -86,5 +86,15 @@ d_total <- bind_rows(d_2015, d_2016, d_2017, d_2018, d_2019, .id = NULL)
 
 **Prompt:** Make an interesting plot with this data. Take that plot and publish it on Rpubs. Add a link to the Rpubs in the #general Slack channel.
 
+```{r scene5}
+d_total %>%
+  group_by(department) %>%
+  mutate(dept_enroll = sum(u_grad), .groups = "drop") %>%
+  arrange(desc(dept_enroll)) %>%
+  filter(!department == "General Education") %>%
+  filter(dept_enroll >= 5000)
+  
+```
+
 ˆ
 
